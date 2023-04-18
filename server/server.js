@@ -21,14 +21,7 @@ mongoose
         console.log(err);
     });
 
-    //fetch from API
-fetch('https://api.punkapi.com/v2/').then((response) => {
-    response.json().then((data) => {
-        console.log(data);
-    })}).catch((err) => {
-        console.log(err);
-    });
-
+  
 app.use('/user', userRoute)
 app.use('/beer', beerRoute)
 
