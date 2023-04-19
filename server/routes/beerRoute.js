@@ -8,16 +8,30 @@ const router = express.Router();
 router.get('/randombeer', getRandomBeer);
 // get all beers
 router.get('/allbeers', getAllBeers);
-// get single beer
-router.get('/:name', getSingleBeer);
 //get all beers from a brewery
-router.get('/brewery/:brewery', getBeersFromBrewery);
+// router.get("/likebeer/:id", auth, likeBeer);
+
+// router.get("/unlikebeer/:id", auth, unlikeBeer);
+
+// router.get("/gettry/:id", auth, getTry);
+
+// router.get("/getdrink/:id", auth, getdrink);
+// "/userbeers/abc?likedrink=true&unlikedrink=false&try=false&drink=false"
+router.get("/userbeers/:id", auth, usersBeersData)
+
 // post request to add a new beer
 router.post('/addbeer', auth, addBeer);
+
+router.get('/brewery/:brewery', getBeersFromBrewery);
+// get single beer
+router.get('/:name', getSingleBeer);
 // patch request to update a beer
 router.patch('/:name', auth, updateBeer)
 // delete request to delete a beer
 router.patch('/:name', auth, isAdmin, deleteBeer)
+
+
+
 
 
 

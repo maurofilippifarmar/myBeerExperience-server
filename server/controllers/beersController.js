@@ -19,6 +19,35 @@ export const getAllBeers = async (req, res) => {
     }
 }
 
+export const usersBeersData = async (req, res) => {
+    try {
+        "/userbeers/abc?likedrink=true&unlikedrink=false&trybeer=false&drinkbeer=false"
+         const {id} = req.params;
+         const {likeddrink, unlikedrink, trybeer, drinkbeer } = req.query;
+            const user = await UserCollection.findById(req.user._id);
+            switch(true) {
+                case likeddrink:
+                    user.beersLiked.push(id);
+                    break;
+                case unlikedrink:
+                    user.beersDisliked.push(id);
+                    break;
+                case trybeer:
+                    user.beersToTry.push(id);
+                    break;
+                case drinkbeer:
+                    user.beersDrinked.push(id);
+                    break;
+            }
+            await user.save();
+            res.status(200).json({ success: true, data: user });
+            
+
+    } catch (error) {
+        
+    }
+}
+
 export const getSingleBeer = async (req, res) => {
     try{
         const beer = await BeerCollection.findOne({name: req.params.name});
