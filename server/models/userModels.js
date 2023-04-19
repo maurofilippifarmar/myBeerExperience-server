@@ -34,7 +34,11 @@ const userSchema = new Schema({
     beersToTry: [{ type: Schema.Types.ObjectId, ref: 'beers' }],
     beersLiked: [{ type: Schema.Types.ObjectId, ref: 'beers' }],
     beersDisliked: [{ type: Schema.Types.ObjectId, ref: 'beers' }],
-});
+},
+{
+    timestamps: true,
+    __v: false,
+    });
 
 userSchema.indexes({ email: 1 });
 

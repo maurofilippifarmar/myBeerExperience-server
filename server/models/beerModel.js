@@ -13,7 +13,7 @@ const beerSchema = new Schema(
         },
         beerStyle: {
             type: String,
-            required: true,
+            
         },
         tagline: {
             type: String,
