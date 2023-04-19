@@ -19,7 +19,7 @@ router.get('/allusers', auth, isAdmin, getAllUsers);
 //post request to add a new user
 router.post('/register', rules, registerUser);
 //post request for login
-router.post('/login', auth, loginUser);
+router.post('/login', loginUser);
 
 // verify token on page refresh
 // get users n page refresh
