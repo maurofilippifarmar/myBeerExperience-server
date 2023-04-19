@@ -28,7 +28,7 @@ router.get('/refreshpage', auth, refreshPage);
 //get single user
 router.get('/:id', auth, isAdmin, getSingleUser);
 
-// patch request updtae user
+// patch request update user
 router.patch('/:id', auth, isAdmin, updateUser);
 
 // delete request delete user
