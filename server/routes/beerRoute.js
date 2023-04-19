@@ -28,9 +28,9 @@ router.get('/allbeers', getAllBeers);
 // router.get("/getdrink/:id", auth, getdrink);
 // "/userbeers/abc?likedrink=true&unlikedrink=false&try=false&drink=false"
 //router.get("/userbeers/:id", auth, usersBeersData)
-// "/userbeers/abc?likedrink=true&unlikedrink=false
+// "/userbeers/beerid?likedrink=true&unlikedrink=false
 router.get('/likedbeers/:id', auth, likedBeers);
-// "/userbeers/abc?trybeer=true&drinkbeer=false
+// "/userbeers/beerid?trybeer=true&drinkbeer=false
 router.get('/tastedbeers/:id', auth, tastedBeers);
 
 // post request to add a new beer

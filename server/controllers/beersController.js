@@ -21,7 +21,7 @@ export const getAllBeers = async (req, res) => {
 
 export const likedBeers = async (req, res) => {
     try {
-        ('/userbeers/abc?likedrink=true&unlikedrink=false');
+        ('/userbeers/beerid?likedrink=true&unlikedrink=false');
         const { id } = req.params;
         const { likeddrink, unlikedrink } = req.query;
         const user = await UserCollection.findById(req.user._id);
@@ -41,7 +41,7 @@ export const likedBeers = async (req, res) => {
 };
 export const tastedBeers = async (req, res) => {
     try {
-        ('/userbeers/abc?trybeer=false&drinkbeer=false');
+        ('/userbeers/beerid?trybeer=false&drinkbeer=false');
         const { id } = req.params;
         const { trybeer, drinkbeer } = req.query;
         const user = await UserCollection.findById(req.user._id);
