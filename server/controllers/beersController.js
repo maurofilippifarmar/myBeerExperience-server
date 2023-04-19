@@ -71,7 +71,7 @@ export const getSingleBeer = async (req, res) => {
 export const getBeersFromBrewery = async (req, res) => {
     try {
         const { brewery } = req.params;
-        const brewBeers = await BeerCollection.find({ brewery: brewery });
+        const brewBeers = await BeerCollection.find({ brewerName: brewery });
         res.status(200).json({ success: true, data: brewBeers });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });

@@ -42,6 +42,6 @@ router.get('/:name', getSingleBeer);
 // patch request to update a beer
 router.patch('/:name', auth, updateBeer);
 // delete request to delete a beer
-router.patch('/:name', auth, isAdmin, deleteBeer);
+router.delete('/:name', auth, isAdmin, deleteBeer);
 
 export default router;
