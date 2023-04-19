@@ -1,7 +1,17 @@
 import express from 'express';
 import { auth } from '../middleware/auth.js';
 import { isAdmin } from '../middleware/isAdmin.js';
-import { addBeer, deleteBeer, getAllBeers, getBeersFromBrewery, getRandomBeer, getSingleBeer, updateBeer } from '../controllers/beersController.js';
+import {
+    addBeer,
+    deleteBeer,
+    getAllBeers,
+    getBeersFromBrewery,
+    getRandomBeer,
+    getSingleBeer,
+    likedBeers,
+    tastedBeers,
+    updateBeer,
+} from '../controllers/beersController.js';
 const router = express.Router();
 
 //get a random beer
@@ -17,7 +27,11 @@ router.get('/allbeers', getAllBeers);
 
 // router.get("/getdrink/:id", auth, getdrink);
 // "/userbeers/abc?likedrink=true&unlikedrink=false&try=false&drink=false"
-router.get("/userbeers/:id", auth, usersBeersData)
+//router.get("/userbeers/:id", auth, usersBeersData)
+// "/userbeers/abc?likedrink=true&unlikedrink=false
+router.get('/likedbeers/:id', auth, likedBeers);
+// "/userbeers/abc?trybeer=true&drinkbeer=false
+router.get('/tastedbeers/:id', auth, tastedBeers);
 
 // post request to add a new beer
 router.post('/addbeer', auth, addBeer);
@@ -26,13 +40,8 @@ router.get('/brewery/:brewery', getBeersFromBrewery);
 // get single beer
 router.get('/:name', getSingleBeer);
 // patch request to update a beer
-router.patch('/:name', auth, updateBeer)
+router.patch('/:name', auth, updateBeer);
 // delete request to delete a beer
-router.patch('/:name', auth, isAdmin, deleteBeer)
-
-
-
-
-
+router.patch('/:name', auth, isAdmin, deleteBeer);
 
 export default router;
