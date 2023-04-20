@@ -67,17 +67,23 @@ export const tastedBeers = async (req, res) => {
 };
 
 export const getSingleBeer = async (req, res) => {
+    const beerName = req.params.name;
+    console.log(req.params.name);
     try {
-        const beer = await BeerCollection.findOne({ name: req.params.name });
+        //const beer = await BeerCollection.findOne({ name: req.params.name });
+        const beer = await BeerCollection.findOne({
+            name: new RegExp(`^${beerName}$`, 'i'),
+        });
         res.status(200).json({ success: true, data: beer });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });
     }
 };
 export const getBeersFromBrewery = async (req, res) => {
+    const brewer = req.params.brewery;
     try {
-        const { brewery } = req.params;
-        const brewBeers = await BeerCollection.find({ brewerName: brewery });
+        //const { brewery } = req.params;
+        const brewBeers = await BeerCollection.find({ brewerName: new RegExp(`^${brewer}$`, 'i') });
         res.status(200).json({ success: true, data: brewBeers });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });
@@ -95,10 +101,10 @@ export const addBeer = async (req, res) => {
 };
 
 export const updateBeer = async (req, res) => {
+    const beerName = req.params.name;
     try {
-        const { name } = req.params;
         const updateBeer = await BeerCollection.findOneAndUpdate(
-            name,
+            { name: new RegExp(`^${beerName}$`, 'i')},
             req.body,
             { new: true }
         );
@@ -109,9 +115,11 @@ export const updateBeer = async (req, res) => {
 };
 
 export const deleteBeer = async (req, res) => {
+    const beerName = req.params.name;
     try {
-        const { name } = req.params;
-        const deleteBeer = await BeerCollection.findOneAndDelete(name);
+        const deleteBeer = await BeerCollection.findOneAndDelete({
+            name: new RegExp(`^${beerName}$`, 'i'),
+        });
         res.status(200).json({ success: true, data: deleteBeer });
     } catch (error) {}
 };
