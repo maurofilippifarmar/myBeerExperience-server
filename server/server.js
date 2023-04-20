@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ exposedHeaders: ['token'] }));
 
 mongoose
     .connect(process.env.MONGODB_URI)
@@ -21,11 +21,8 @@ mongoose
         console.log(err);
     });
 
-  
-app.use('/user', userRoute)
-app.use('/beer', beerRoute)
-
-
+app.use('/user', userRoute);
+app.use('/beer', beerRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
